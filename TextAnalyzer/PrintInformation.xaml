@@ -5,13 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TextAnalyzer"
         mc:Ignorable="d"
-        Title="PrintInformation" Height="355" Width="587.553">
+        Title="PrintInformation" Height="409.249" Width="587.553">
     <Grid>
-        <Label Content="Количество слов" HorizontalAlignment="Left" Height="28" Margin="28,10,0,0" VerticalAlignment="Top" Width="112"/>
-        <Label Content="Количество уникальных слов" HorizontalAlignment="Left" Height="28" Margin="28,43,0,0" VerticalAlignment="Top" Width="173"/>
-        <Label Content="10 самых длинных слов" HorizontalAlignment="Left" Height="28" Margin="28,92,0,0" VerticalAlignment="Top" Width="144"/>
-        <Label Content="10 самых часто встречающихся слов" HorizontalAlignment="Left" Height="28" Margin="28,158,0,0" VerticalAlignment="Top" Width="213"/>
-        <Label Content="Процентное соотношение букв в текте :" HorizontalAlignment="Left" Height="28" Margin="28,211,0,0" VerticalAlignment="Top" Width="231"/>
+        <Label  Content="🔸 Количество слов" HorizontalAlignment="Left" Height="28" Margin="28,3,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label  Content="🔸 Количество уникальных слов" HorizontalAlignment="Left" Height="28" Margin="28,36,0,0" VerticalAlignment="Top" Width="188"/>
+        <Label  Content="🔸 10 самых длинных слов" HorizontalAlignment="Left" Height="27" Margin="28,69,0,0" VerticalAlignment="Top" Width="159"/>
+        <Label  Content="🔸 10 самых часто встречающихся слов" HorizontalAlignment="Left" Height="28" Margin="28,151,0,0" VerticalAlignment="Top" Width="231"/>
+        <Label  Content="🔸 Процентное соотношение букв в текте" HorizontalAlignment="Left" Height="34" Margin="28,241,0,0" VerticalAlignment="Top" Width="247"/>
+        <TextBox x:Name="field3" HorizontalAlignment="Left" Height="51" Margin="28,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="523"/>
+        <TextBox x:Name="field4" HorizontalAlignment="Left" Height="51" Margin="28,179,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="523"/>
+        <TextBox x:Name="field5" HorizontalAlignment="Left" Height="90" Margin="28,280,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="523"/>
+        <TextBox x:Name="field1" HorizontalAlignment="Left" Height="30" Margin="401,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
+        <TextBox x:Name="field2" HorizontalAlignment="Left" Height="30" Margin="401,45,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
 
     </Grid>
 </Window>
