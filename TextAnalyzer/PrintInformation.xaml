@@ -11,7 +11,7 @@
         <Label  Content="🔸 Количество уникальных слов" HorizontalAlignment="Left" Height="28" Margin="28,36,0,0" VerticalAlignment="Top" Width="188"/>
         <Label  Content="🔸 10 самых длинных слов" HorizontalAlignment="Left" Height="27" Margin="28,69,0,0" VerticalAlignment="Top" Width="159"/>
         <Label  Content="🔸 10 самых часто встречающихся слов" HorizontalAlignment="Left" Height="28" Margin="28,151,0,0" VerticalAlignment="Top" Width="231"/>
-        <Label  Content="🔸 Процентное соотношение букв в текте" HorizontalAlignment="Left" Height="34" Margin="28,241,0,0" VerticalAlignment="Top" Width="247"/>
+        <Label  Content="🔸 Процентное соотношение букв в тексте" HorizontalAlignment="Left" Height="34" Margin="28,241,0,0" VerticalAlignment="Top" Width="255"/>
         <TextBox x:Name="field3" HorizontalAlignment="Left" Height="51" Margin="28,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="523"/>
         <TextBox x:Name="field4" HorizontalAlignment="Left" Height="51" Margin="28,179,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="523"/>
         <TextBox x:Name="field5" HorizontalAlignment="Left" Height="90" Margin="28,280,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="523"/>

@@ -48,25 +48,74 @@ namespace TextAnalyzer
         // Print information
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            string text = Field.Text;
-            string[] words = text.Split(" ,./?-_+=<>;'\n\t".ToCharArray());
             PrintInformation info = new PrintInformation();
-            info.field1.Text = NumberWords(words).ToString();
-            info.field5.Text = LetterRatio(text);
+            string text = Field.Text.ToLower();
+            string[] words = text.Split(" ,./?-_+=<>\\;:\n\t{}()[]»«'".ToCharArray());
+            Sort(words, true);
+
+            for (int i = 0; i < words.Length; i++)
+                info.field5.Text += words[i]+"; ";
+
+            //SortedList<string, int> data = new SortedList<string, int>();
+
+            
+            
+            //info.field1.Text = NumberWords(words).ToString();
+            //info.field5.Text = LetterRatio(text);
             info.Show();
 
         }
+        
+        private Boolean CompareStrings(string s1, string s2, Boolean tS) // s1 < s2
+        {
+            int strlen1 = s1.Length, strlen2 = s2.Length;
+            if (!tS)
+            {
+                for (int i = 0; i < Math.Min(strlen1, strlen2); i++)
+                {
+                    if (s1[i] < s2[i])
+                        return true;
+                    if (s1[i] > s2[i])
+                        return false;
+                }
+            }
+            if (strlen1 < strlen2)
+                return true;
+            return false;
+        }
+
+        // if the typeSorting equals false the array of strings is sorted by lexical type
+        // if the typeSorting equals true the array of strings is sorted by their length
+        private void Sort(string[] array, Boolean typeSorting = false)
+        {
+            int n = array.Length;
+            for (int i = 0; i < n - 1; i++)
+                for (int j = i + 1; j < n; j++)
+                {
+                   if (!CompareStrings(array[i], array[j], typeSorting))
+                    {
+                        string c = array[j];
+                        array[j] = array[i];
+                        array[i] = c;
+                    }
+                }
+        }
+        
         private int CountVariousWords(string[] symbs)
         {
-            ;
+            int count = 0;
+            int n = symbs.Length;
+            return 0;
         }
+                    
+
         private string LongWords(string[] symbs)
         {
-
+            return "";
         }
         private string FrequentWords(string[] symbs)
         {
-
+            return "";
         }
         private int NumberWords(string[] symbs)
         {
