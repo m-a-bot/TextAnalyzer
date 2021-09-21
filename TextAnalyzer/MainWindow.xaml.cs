@@ -50,22 +50,62 @@ namespace TextAnalyzer
         {
             PrintInformation info = new PrintInformation();
             string text = Field.Text.ToLower();
-            string[] words = text.Split(" ,./?-_+=<>\\;:\n\t{}()[]»«'".ToCharArray());
+
+            string comp = " ,./?-_+=<>\\;:\n\t{}()[]»«'";
+            string res = "";
+            List<string> words = new List<string>();
+            string[] frequantStrings = new string[10];
+            for (int i = 0; i < 10; i++)
+                frequantStrings[i] = "";
+
+            for (int i=0; i<text.Length; i++)
+            {
+                if (comp.IndexOf(text[i]) == -1)
+                    res += text[i];
+                else
+                {
+                    if (res != "")
+                        words.Add(res);
+                    res = "";
+                }
+            }
+            words.Add(res);
+
+            int n = words.Count;
+            info.field1.Text = n.ToString();
+            Sort(words);
+
+            string sr = words[0];
+            int count = 1;
+            int k = 1;
+            for (int i=1; i < n; i++)
+            {
+                if (sr != words[i])
+                {
+                   
+                    count++;
+                }
+               
+
+                sr = words[i];
+            }
+            info.field2.Text = count.ToString();
+
             Sort(words, true);
+            try
+            {
+                for (int i = n - 1; i > n - 11; i--)
+                    info.field3.Text += words[i] + "; ";
+            } catch (System.ArgumentOutOfRangeException)
+            {
 
-            for (int i = 0; i < words.Length; i++)
-                info.field5.Text += words[i]+"; ";
+            }
 
-            //SortedList<string, int> data = new SortedList<string, int>();
-
-            
-            
-            //info.field1.Text = NumberWords(words).ToString();
-            //info.field5.Text = LetterRatio(text);
+            info.field5.Text = LetterRatio(text);
             info.Show();
 
         }
-        
+       
         private Boolean CompareStrings(string s1, string s2, Boolean tS) // s1 < s2
         {
             int strlen1 = s1.Length, strlen2 = s2.Length;
@@ -86,9 +126,9 @@ namespace TextAnalyzer
 
         // if the typeSorting equals false the array of strings is sorted by lexical type
         // if the typeSorting equals true the array of strings is sorted by their length
-        private void Sort(string[] array, Boolean typeSorting = false)
+        private void Sort(List<string> array, Boolean typeSorting = false)
         {
-            int n = array.Length;
+            int n = array.Count;
             for (int i = 0; i < n - 1; i++)
                 for (int j = i + 1; j < n; j++)
                 {
@@ -116,10 +156,6 @@ namespace TextAnalyzer
         private string FrequentWords(string[] symbs)
         {
             return "";
-        }
-        private int NumberWords(string[] symbs)
-        {
-            return symbs.Length;
         }
         private string LetterRatio(string words)
         {
