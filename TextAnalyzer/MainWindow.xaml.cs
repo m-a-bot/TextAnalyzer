@@ -23,10 +23,12 @@ namespace TextAnalyzer
         // Open file
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog dlg = new OpenFileDialog();
-            dlg.DefaultExt = ".txt";
-            dlg.Filter = "(.txt)|*.txt";
-            
+            OpenFileDialog dlg = new OpenFileDialog
+            {
+                DefaultExt = ".txt",
+                Filter = "(.txt)|*.txt"
+            };
+
             dlg.ShowDialog();
             if (dlg.FileName != string.Empty)
             {
@@ -38,9 +40,11 @@ namespace TextAnalyzer
         // Save file
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            SaveFileDialog sdlg = new SaveFileDialog();
-            sdlg.DefaultExt = ".txt";
-            sdlg.Filter = "(.txt)|*.txt";
+            SaveFileDialog sdlg = new SaveFileDialog
+            {
+                DefaultExt = ".txt",
+                Filter = "(.txt)|*.txt"
+            };
 
             sdlg.ShowDialog();
         }
@@ -54,10 +58,6 @@ namespace TextAnalyzer
             string comp = " ,./?-_+=<>\\;:\n\t{}()[]»«'";
             string res = "";
             List<string> words = new List<string>();
-            string[] frequantStrings = new string[10];
-            for (int i = 0; i < 10; i++)
-                frequantStrings[i] = "";
-
             for (int i=0; i<text.Length; i++)
             {
                 if (comp.IndexOf(text[i]) == -1)
@@ -76,20 +76,66 @@ namespace TextAnalyzer
             Sort(words);
 
             string sr = words[0];
+            
             int count = 1;
             int k = 1;
+            
+            List<int> CountStr = new List<int>();
+            List<string> Strs = new List<string>();
+            
             for (int i=1; i < n; i++)
             {
+                
                 if (sr != words[i])
                 {
-                   
                     count++;
+                    Strs.Add(sr);
+                    CountStr.Add(k);
+                    k = 1;
                 }
-               
-
+                else
+                {
+                    k++;
+                }
                 sr = words[i];
             }
+
+            if (!Strs.Contains(sr))
+            {
+                Strs.Add(sr);
+                CountStr.Add(k);
+            }
+
+            int m = CountStr.Count;
+            for (int i=0; i<m-1; i++)
+            {
+                 for (int j=i+1; j<m; j++)
+                {
+                    if (CountStr[i] > CountStr[j])
+                    {
+                        int cN = CountStr[j];
+                        string cS = Strs[j];
+                        CountStr[j] = CountStr[i];
+                        CountStr[i] = cN;
+                        Strs[j] = Strs[i];
+                        Strs[i] = cS;
+                    }
+                }
+            }
+
+            try
+            {
+                for (int i = m - 1; i > m - 11; i--)
+                    info.field4.Text += Strs[i]+" - "+ CountStr[i] + "; ";
+            } catch
+            {
+
+            }
+
             info.field2.Text = count.ToString();
+
+            
+
 
             Sort(words, true);
             try
@@ -141,22 +187,6 @@ namespace TextAnalyzer
                 }
         }
         
-        private int CountVariousWords(string[] symbs)
-        {
-            int count = 0;
-            int n = symbs.Length;
-            return 0;
-        }
-                    
-
-        private string LongWords(string[] symbs)
-        {
-            return "";
-        }
-        private string FrequentWords(string[] symbs)
-        {
-            return "";
-        }
         private string LetterRatio(string words)
         {
             string res = "";
