@@ -92,7 +92,9 @@ namespace TextAnalyzer
             words.Add(res);
             int n = words.Count;
             result[0] = n.ToString();
-            Sort(words);
+            
+            words.Sort();
+            //Sort(words);
 
             string sr = words[0];
             int count = 1;
@@ -148,7 +150,10 @@ namespace TextAnalyzer
                 }
             }
             result[1] = count.ToString();
-            Sort(words, true);
+
+            StringsCompare sCompare = new StringsCompare();
+
+            words.Sort(sCompare);
             for (int i = n - 1; i > n - 11; i--)
             {
                 try
@@ -181,39 +186,6 @@ namespace TextAnalyzer
             info.Show();
         }
        
-        private Boolean CompareStrings(string s1, string s2, Boolean tS) // s1 < s2
-        {
-            int strlen1 = s1.Length, strlen2 = s2.Length;
-            if (!tS)
-            {
-                for (int i = 0; i < Math.Min(strlen1, strlen2); i++)
-                {
-                    if (s1[i] < s2[i])
-                        return true;
-                    if (s1[i] > s2[i])
-                        return false;
-                }
-            }
-            return strlen1 < strlen2;
-        }
-
-        // if the typeSorting equals false the array of strings is sorted by lexical type
-        // if the typeSorting equals true the array of strings is sorted by their length
-        private void Sort(List<string> array, Boolean typeSorting = false)
-        {
-            int n = array.Count;
-            for (int i = 0; i < n - 1; i++)
-                for (int j = i + 1; j < n; j++)
-                {
-                   if (!CompareStrings(array[i], array[j], typeSorting))
-                    {
-                        string c = array[j];
-                        array[j] = array[i];
-                        array[i] = c;
-                    }
-                }
-        }
-        
         private string LetterRatio(string words)
         {
             string res = "";
@@ -243,4 +215,17 @@ namespace TextAnalyzer
         }
 
     }
+    class StringsCompare : IComparer<string>
+    {
+        int IComparer<string>.Compare(string x, string y)
+        {
+            if (x.Length > y.Length)
+                return 1;
+            else if (x.Length < y.Length)
+                return -1;
+            return 0;
+            throw new NotImplementedException();
+        }
+    }
+
 }
