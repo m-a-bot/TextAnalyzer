@@ -173,7 +173,7 @@ namespace TextAnalyzer
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             PrintInformation info = new PrintInformation();
-           
+            info.Show();
             try
             {
                 string[] r = ResultPr(Field.Text.ToLower());
@@ -182,8 +182,9 @@ namespace TextAnalyzer
                 info.field3.Text = r[2];
                 info.field4.Text = r[3];
                 info.field5.Text = r[4];
+                
             } catch { }
-            info.Show();
+            
         }
        
         private string LetterRatio(string words)
